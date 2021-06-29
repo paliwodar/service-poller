@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link data-th-href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link data-th-href="@{/css/main.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container">
+
+    <form class="form" action="#" th:action="@{/services}" th:object="${polleeDto}" method="post">
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Name"/>
+        <label for="name">Service Url</label>
+        <input type="text" th:field="*{serviceUrl}" id="serviceUrl" placeholder="Url"/>
+        <input type="submit" value="Add Service"/>
+    </form>
+
+    <div class="row">
+        <div id="title">
+            <h1>Service Poller</h1>
+        </div>
+        <table id="pollees" class="table table-striped">
+            <thead>
+            <tr>
+                <th width="30%">Id</th>
+                <th width="30%">Service Name</th>
+                <th width="30%">Service Url</th>
+                <th>Alive?</th>
+                <th>Created</th>
+                <th>Last checked</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="result" data-th-each="pollee : ${pollees}">
+                <td>[[${pollee.getId()}]]</td>
+                <td>[[${pollee.getName()}]]</td>
+                <td>[[${pollee.getServiceUrl()}]]</td>
+                <td>[[${pollee.getStatus()}]]</td>
+                <td>[[${pollee.getCreatedAt()}]]</td>
+                <td>[[${pollee.getLastCheckedAt()}]]</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script data-th-src="@{/js/main.js}"></script>
+
+</body>
+</html>

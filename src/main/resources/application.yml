@@ -1,0 +1,19 @@
+spring:
+  thymeleaf:
+    cache: false
+    enabled: true
+    prefix: 'classpath:/templates/'
+    suffix: '.html'
+    reactive:
+      max-chunk-size: 8192
+
+polling:
+  fixed-delay: 5000
+  interval: 30000
+  timeout: 5000
+
+job-queue:
+  batch-size: 16
+  pushing-interval: 5000
+
+
