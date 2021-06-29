@@ -38,10 +38,10 @@ public class Poller {
     }
 
     public Flux<Pollee> poll() {
-        Flux<Pollee> polleeFlux = workQueue.pop()
-                                           .takeWhile(pollee -> pollee.canBePolledYet(pollingInterval, Instant.now(clock)));
-        return polleeFlux.flatMap(healthChecker::check)
-                         .flatMap(this::updatePollee);
+        return workQueue.pop()
+                        .takeWhile(pollee -> pollee.canBePolledYet(pollingInterval, Instant.now(clock)))
+                        .flatMap(healthChecker::check)
+                        .flatMap(this::updatePollee);
     }
 
     @Transactional
